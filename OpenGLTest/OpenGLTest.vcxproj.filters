@@ -24,6 +24,12 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\TerrainGenerator.h">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\TerrainGenerator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShaderLoader.h">
@@ -42,6 +48,15 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Block.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\RessourceManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Ressources\Properties\BlockData.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="PerlinNoise.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
