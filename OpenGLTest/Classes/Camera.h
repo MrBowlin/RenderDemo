@@ -1,5 +1,4 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -38,7 +37,7 @@ public:
 		WorldUp = up;
 		Yaw = yaw;
 		Pitch = pitch;
-		updateCameraVectors();
+		UpdateCameraVectors();
 	}
 
 	Camera(float posX, float posY, float posZ,
@@ -53,44 +52,15 @@ public:
 		WorldUp = glm::vec3(upX, upY, upZ);
 		Yaw = yaw;
 		Pitch = pitch;
-		updateCameraVectors();
+		UpdateCameraVectors();
 	}
 
-	glm::mat4 GetViewMatrix() {
-		return glm::lookAt(Position, Position + Forward, Up);
-	}
+	glm::mat4 GetViewMatrix();
 
-	void Move(glm::vec3 direction) {
-		glm::vec3 flatForward = glm::cross(WorldUp, Right);
-		Position += direction.x * Right + direction.y * WorldUp + direction.z * flatForward;
-	}
+	void Move(glm::vec3 direction);
 
-	void ProcessMouseMovement(float xOffset, float yOffset, GLboolean constrainPitch = true) {
-		xOffset *= MouseSensitivity;
-		yOffset *= MouseSensitivity;
+	void ProcessMouseMovement(float xOffset, float yOffset, GLboolean constrainPitch = true);
 
-		Yaw += xOffset;
-		Pitch += yOffset;
-
-		if (constrainPitch) {
-			if (Pitch > 89.0f)
-				Pitch = 89.0f;
-			if (Pitch < -89.0f)
-				Pitch = -89.0f;
-		}
-
-		updateCameraVectors();
-	}
 private:
-	void updateCameraVectors() {
-		glm::vec3 forward;
-		forward.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-		forward.y = sin(glm::radians(Pitch));
-		forward.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-		Forward = glm::normalize(forward);
-		Right = glm::normalize(glm::cross(Forward, WorldUp));
-		Up = glm::normalize(glm::cross(Right, Forward));
-	}
+	void UpdateCameraVectors();
 };
-
-#endif

@@ -13,11 +13,6 @@ const std::vector<float>topVertices = {
 
 const std::vector<float>topNormals = {
 	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
 };
 
 const std::vector<float>bottomVertices = {
@@ -30,11 +25,6 @@ const std::vector<float>bottomVertices = {
 };
 
 const std::vector<float>bottomNormals = {
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
-	0.0f, -1.0f, 0.0f,
 	0.0f, -1.0f, 0.0f,
 };
 
@@ -49,11 +39,6 @@ const std::vector<float>leftVertices = {
 
 const std::vector<float>leftNormals = {
 	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
-	-1.0f, 0.0f, 0.0f,
 };
 
 const std::vector<float>rightVertices = {
@@ -66,11 +51,6 @@ const std::vector<float>rightVertices = {
 };
 
 const std::vector<float>rightNormals = {
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f,
 	1.0f, 0.0f, 0.0f,
 };
 
@@ -85,11 +65,6 @@ const std::vector<float>frontVertices = {
 
 const std::vector<float>frontNormals = {
 	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
-	0.0f, 0.0f, -1.0f,
 };
 
 const std::vector<float>backVertices = {
@@ -103,11 +78,15 @@ const std::vector<float>backVertices = {
 
 const std::vector<float>backNormals = {
 	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
-	0.0f, 0.0f, 1.0f,
+};
+
+const std::vector<float>commonTexels = {
+	0.0f, 0.0f,
+	1.0f, 0.0f,
+	1.0f, 1.0f,
+	1.0f, 1.0f,
+	0.0f, 1.0f,
+	0.0f, 0.0f,
 };
 
 const std::vector<float>texCoords = {

@@ -160,6 +160,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Users\tammo\Downloads\glad\src\glad.c" />
+    <ClCompile Include="Classes\Camera.cpp" />
+    <ClCompile Include="Classes\Chunk.cpp" />
+    <ClCompile Include="Classes\Mesh.cpp" />
     <ClCompile Include="Classes\TerrainGenerator.cpp" />
     <ClCompile Include="Classes\TerrainGenerator.h" />
     <ClCompile Include="Main.cpp" />
@@ -170,6 +173,7 @@
     <ClInclude Include="Classes\Camera.h" />
     <ClInclude Include="Classes\Chunk.h" />
     <ClInclude Include="Classes\GameObject.h" />
+    <ClInclude Include="Classes\Mesh.h" />
     <ClInclude Include="Classes\RessourceManager.h" />
     <ClInclude Include="PerlinNoise.hpp" />
     <ClInclude Include="Ressources\Properties\BlockData.h" />
