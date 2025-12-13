@@ -13,12 +13,12 @@ unsigned int TerrainGenerator2D::HeightNoise(unsigned int x, unsigned int y) {
 }
 
 bool TerrainGenerator2D::IsBlockNoise(unsigned int x, unsigned int y, unsigned int z) {
-	unsigned int height = HeightNoise(x, z);
+	unsigned int height = HeightNoise(x, z) + HeightOffset;
 	return y <= height;
 }
 
 unsigned int TerrainGenerator2D::GetBlockNoise(unsigned int x, unsigned int y, unsigned int z) {
-	unsigned int height = HeightNoise(x, z);
+	unsigned int height = HeightNoise(x, z) + HeightOffset;
 	if (y + 3 < height)		// Four Blocks below Air => Stone
 		return 2;
 	else if (y < height)	// Dirt

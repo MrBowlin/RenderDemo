@@ -28,6 +28,10 @@ float lastX = (float)SCR_WIDTH / 2.0f;
 float lastY = (float)SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
+glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
+glm::vec3 lightDirection(-0.5f, 3.0f, -2.0f);
+float ambientStrength = 0.3f;
+
 int main()
 {
     glfwInit();
@@ -54,13 +58,16 @@ int main()
         return -1;
     }
 
-    Shader ourShader("Ressources/Shader/basicVertex.glsl", "Ressources/Shader/basicFragment.glsl");
+    Shader basicShader("Ressources/Shader/diffusedVertex.glsl", "Ressources/Shader/diffusedFragment.glsl");
+    Shader diffusedShader("Ressources/Shader/diffusedVertex.glsl", "Ressources/Shader/diffusedFragment.glsl");
+    Shader activeShader = diffusedShader;
 
     Chunk chunk = Chunk();
     chunk.Start();
 
+    // Produces Stack Warning!
     unsigned int texture;
-    ressourceManager.CreateTexture(ourShader, &texture);
+    ressourceManager.CreateTexture(activeShader, &texture);
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glEnable(GL_DEPTH_TEST);
@@ -85,17 +92,20 @@ int main()
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
 
-        ourShader.use();
+        activeShader.use();
+        activeShader.setVec3("lightColor", lightColor);
+        activeShader.setVec3("lightDirection", lightDirection);
+        activeShader.setFloat("ambientStrength", ambientStrength);
 
         glm::mat4 projection;
         projection = glm::perspective(glm::radians(80.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        ourShader.setMat4("projection", projection);
+        activeShader.setMat4("projection", projection);
 
         glm::mat4 view;
         view = camera.GetViewMatrix();
-        ourShader.setMat4("view", view);
+        activeShader.setMat4("view", view);
 
-        chunk.Render(ourShader);
+        chunk.Render(activeShader);
 
         // check and call events and swap the buffers
         glfwSwapBuffers(window);

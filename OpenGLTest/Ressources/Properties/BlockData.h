@@ -1,6 +1,8 @@
 #pragma once
 
-const float topVertices[] = {
+#include <vector>
+
+const std::vector<float>topVertices = {
 	1.0f, 1.0f, 1.0f,
 	0.0f, 1.0f, 1.0f,
 	0.0f, 1.0f, 0.0f,
@@ -9,7 +11,16 @@ const float topVertices[] = {
 	1.0f, 1.0f, 1.0f,
 };
 
-const float bottomVertices[] = {
+const std::vector<float>topNormals = {
+	0.0f, 1.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+};
+
+const std::vector<float>bottomVertices = {
 	0.0f, 0.0f, 1.0f,
 	1.0f, 0.0f, 1.0f,
 	1.0f, 0.0f, 0.0f,
@@ -18,7 +29,16 @@ const float bottomVertices[] = {
 	0.0f, 0.0f, 1.0f,
 };
 
-const float leftVertices[] = {
+const std::vector<float>bottomNormals = {
+	0.0f, -1.0f, 0.0f,
+	0.0f, -1.0f, 0.0f,
+	0.0f, -1.0f, 0.0f,
+	0.0f, -1.0f, 0.0f,
+	0.0f, -1.0f, 0.0f,
+	0.0f, -1.0f, 0.0f,
+};
+
+const std::vector<float>leftVertices = {
 	0.0f, 0.0f, 1.0f,
 	0.0f, 0.0f, 0.0f,
 	0.0f, 1.0f, 0.0f,
@@ -27,7 +47,16 @@ const float leftVertices[] = {
 	0.0f, 0.0f, 1.0f,
 };
 
-const float rightVertices[] = {
+const std::vector<float>leftNormals = {
+	-1.0f, 0.0f, 0.0f,
+	-1.0f, 0.0f, 0.0f,
+	-1.0f, 0.0f, 0.0f,
+	-1.0f, 0.0f, 0.0f,
+	-1.0f, 0.0f, 0.0f,
+	-1.0f, 0.0f, 0.0f,
+};
+
+const std::vector<float>rightVertices = {
 	1.0f, 0.0f, 0.0f,
 	1.0f, 0.0f, 1.0f,
 	1.0f, 1.0f, 1.0f,
@@ -36,7 +65,16 @@ const float rightVertices[] = {
 	1.0f, 0.0f, 0.0f,
 };
 
-const float frontVertices[] = {
+const std::vector<float>rightNormals = {
+	1.0f, 0.0f, 0.0f,
+	1.0f, 0.0f, 0.0f,
+	1.0f, 0.0f, 0.0f,
+	1.0f, 0.0f, 0.0f,
+	1.0f, 0.0f, 0.0f,
+	1.0f, 0.0f, 0.0f,
+};
+
+const std::vector<float>frontVertices = {
 	0.0f, 0.0f, 0.0f,
 	1.0f, 0.0f, 0.0f,
 	1.0f, 1.0f, 0.0f,
@@ -45,7 +83,16 @@ const float frontVertices[] = {
 	0.0f, 0.0f, 0.0f,
 };
 
-const float backVertices[] = {
+const std::vector<float>frontNormals = {
+	0.0f, 0.0f, -1.0f,
+	0.0f, 0.0f, -1.0f,
+	0.0f, 0.0f, -1.0f,
+	0.0f, 0.0f, -1.0f,
+	0.0f, 0.0f, -1.0f,
+	0.0f, 0.0f, -1.0f,
+};
+
+const std::vector<float>backVertices = {
 	1.0f, 0.0f, 1.0f,
 	0.0f, 0.0f, 1.0f,
 	0.0f, 1.0f, 1.0f,
@@ -54,7 +101,16 @@ const float backVertices[] = {
 	1.0f, 0.0f, 1.0f,
 };
 
-const float texCoords[] = {
+const std::vector<float>backNormals = {
+	0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 1.0f,
+};
+
+const std::vector<float>texCoords = {
 	//xOffset yOffset
 						// 0:Air
 		0.0f,	0.0f,	// 1:Grass-Top

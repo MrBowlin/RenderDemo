@@ -60,4 +60,10 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\Shader\diffusedFragment.glsl" />
+    <None Include="Ressources\Shader\basicVertex.glsl" />
+    <None Include="Ressources\Shader\basicFragment.glsl" />
+    <None Include="Ressources\Shader\diffusedVertex.glsl" />
+  </ItemGroup>
 </Project>

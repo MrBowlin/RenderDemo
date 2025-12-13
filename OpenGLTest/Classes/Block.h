@@ -29,25 +29,39 @@ public:
 		BlockID = blockID;
 	}
 
-	void UpdateFace(unsigned int* vertBufferIndex, unsigned int* texBufferIndex, Face_Orientation face, const float vertices[], unsigned int vertSize) {
+	void UpdateFace(
+		unsigned int* vertBufferIndex,
+		unsigned int* texBufferIndex,
+		unsigned int* norBufferIndex,
+		Face_Orientation face,
+		const std::vector<float>* vertices,
+		const float* normals,
+		unsigned int vertSize,
+		unsigned int normSize) 
+	{
 		ProcessPositionData(vertBufferIndex, vertices, vertSize);
 		ProcessTexelData(face, texBufferIndex);
+		ProcessNormalData(norBufferIndex, normals, normSize);
 	}
 
 private:
-	void AddToBuffer(unsigned int* bufferIndex, float indices[], unsigned int indexSize) {
+	void AddToBuffer(unsigned int* bufferIndex, const float *indices, unsigned int indexSize) {
 		glBufferSubData(GL_ARRAY_BUFFER, *bufferIndex, indexSize, indices);
 		*bufferIndex += indexSize;
 	}
 
-	void ProcessPositionData(unsigned int* bufferIndex, const float vertices[], unsigned int vertSize) {
-		float positions[6 * 3];
+	void ProcessPositionData(unsigned int* bufferIndex, const std::vector<float> *vertices, unsigned int vertSize) {
+		std::vector<float>positions(6 * 3);
 		for (unsigned int i = 0; i < 6 * 3; i += 3) {
-			positions[i] = Position.x + vertices[i];
-			positions[i + 1] = Position.y + vertices[i + 1];
-			positions[i + 2] = Position.z + vertices[i + 2];
+			positions[i] = Position.x + vertices->at(i);
+			positions[i + 1] = Position.y + vertices->at(i + 1);
+			positions[i + 2] = Position.z + vertices->at(i + 2);
 		}
-		AddToBuffer(bufferIndex, positions, vertSize);
+		AddToBuffer(bufferIndex, &positions[0], vertSize);
+	}
+
+	void ProcessNormalData(unsigned int* bufferIndex, const float* normals, unsigned int normalSize) {
+		AddToBuffer(bufferIndex, normals, normalSize);
 	}
 
 	void ProcessTexelData(Face_Orientation face, unsigned int* bufferIndex) {
@@ -55,7 +69,7 @@ private:
 		float yOffset;
 		GetOffset(face, &xOffset, &yOffset);
 		
-		float texels[] = {
+		std::vector<float>texels = {
 			0.0f, 0.0f,
 			1.0f, 0.0f,
 			1.0f, 1.0f,
@@ -67,7 +81,7 @@ private:
 			texels[i] = (texels[i] + xOffset) / 16.0f;
 			texels[i + 1] = (texels[i + 1] + 15 - yOffset) / 16.0f;
 		}
-		AddToBuffer(bufferIndex, texels, sizeof(texels));
+		AddToBuffer(bufferIndex, &texels[0], static_cast<unsigned int>(texels.size()) * sizeof(float));
 	}
 
 	void GetOffset(Face_Orientation face, float* xOffset, float* yOffset) {

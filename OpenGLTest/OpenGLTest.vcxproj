@@ -176,6 +176,12 @@
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\Shader\basicFragment.glsl" />
+    <None Include="Ressources\Shader\basicVertex.glsl" />
+    <None Include="Ressources\Shader\diffusedFragment.glsl" />
+    <None Include="Ressources\Shader\diffusedVertex.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
