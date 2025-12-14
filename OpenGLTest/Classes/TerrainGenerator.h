@@ -10,18 +10,18 @@ class TerrainGenerator2D {
 
 public:
 
-	class TerrainGenerator2D(float amplitude = 1.0f, float frequency = 1.0f, unsigned int heightOffset = 0, unsigned int seed = 123456) {
+	class TerrainGenerator2D(float amplitude = 1.0f, float frequency = 1.0f, int heightOffset = 0, unsigned int seed = 123456) {
 		Frequency = frequency;
 		Amplitude = amplitude;
 		Seed = seed;
 		HeightOffset = heightOffset;
 	}
 
-	unsigned int HeightNoise(unsigned int x, unsigned int y);
+	unsigned int HeightNoise(int x, int y);
 
-	bool IsBlockNoise(unsigned int x, unsigned int y, unsigned int z);
+	bool IsBlockNoise(int x, int y, int z);
 
-	unsigned int GetBlockNoise(unsigned int x, unsigned int y, unsigned int z);
+	unsigned int GetBlockNoise(int x, int y, int z);
 };
 
 class TerrainGenerator3D {
@@ -40,9 +40,9 @@ public:
 		Threshhold = threshhold;
 	}
 
-	float DensityNoise(unsigned int x, unsigned int y, unsigned int z);
+	float DensityNoise(int x, int y, int z);
 
-	bool IsBlockNoise(unsigned int x, unsigned int y, unsigned int z);
+	bool IsBlockNoise(int x, int y, int z);
 
-	unsigned int GetBlockNoise(unsigned int x, unsigned int y, unsigned int z);
+	unsigned int GetBlockNoise(int x, int y, int z);
 };

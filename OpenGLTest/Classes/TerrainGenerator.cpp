@@ -3,7 +3,7 @@
 #include <iostream>
 #include "..\PerlinNoise.hpp"
 
-unsigned int TerrainGenerator2D::HeightNoise(unsigned int x, unsigned int y) {
+unsigned int TerrainGenerator2D::HeightNoise(int x, int y) {
 	siv::PerlinNoise::seed_type perlinSeed = Seed;
 	siv::PerlinNoise perlin{ perlinSeed };
 
@@ -12,13 +12,13 @@ unsigned int TerrainGenerator2D::HeightNoise(unsigned int x, unsigned int y) {
 	return static_cast<unsigned int>(floor(noise * Amplitude));
 }
 
-bool TerrainGenerator2D::IsBlockNoise(unsigned int x, unsigned int y, unsigned int z) {
-	unsigned int height = HeightNoise(x, z) + HeightOffset;
+bool TerrainGenerator2D::IsBlockNoise(int x, int y, int z) {
+	int height = static_cast<int>(HeightNoise(x, z) + HeightOffset);
 	return y <= height;
 }
 
-unsigned int TerrainGenerator2D::GetBlockNoise(unsigned int x, unsigned int y, unsigned int z) {
-	unsigned int height = HeightNoise(x, z) + HeightOffset;
+unsigned int TerrainGenerator2D::GetBlockNoise(int x, int y, int z) {
+	int height = static_cast<int>(HeightNoise(x, z) + HeightOffset);
 	if (y + 3 < height)		// Four Blocks below Air => Stone
 		return 2;
 	else if (y < height)	// Dirt
@@ -29,7 +29,7 @@ unsigned int TerrainGenerator2D::GetBlockNoise(unsigned int x, unsigned int y, u
 		return 0;
 }
 
-float TerrainGenerator3D::DensityNoise(unsigned int x, unsigned int y, unsigned int z) {
+float TerrainGenerator3D::DensityNoise(int x, int y, int z) {
 	siv::PerlinNoise::seed_type perlinSeed = Seed;
 	siv::PerlinNoise perlin{ perlinSeed };
 
@@ -38,11 +38,11 @@ float TerrainGenerator3D::DensityNoise(unsigned int x, unsigned int y, unsigned 
 	return static_cast<float>(noise * Density);
 }
 
-bool TerrainGenerator3D::IsBlockNoise(unsigned int x, unsigned int y, unsigned int z) {
+bool TerrainGenerator3D::IsBlockNoise(int x, int y, int z) {
 	return DensityNoise(x, y, z) > Threshhold;
 }
 
-unsigned int TerrainGenerator3D::GetBlockNoise(unsigned int x, unsigned int y, unsigned int z) {
+unsigned int TerrainGenerator3D::GetBlockNoise(int x, int y, int z) {
 	float density = DensityNoise(x, y, z);
 	if (density > Threshhold)
 		return 2;
