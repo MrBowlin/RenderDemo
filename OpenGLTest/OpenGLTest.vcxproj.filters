@@ -50,9 +50,6 @@
     <ClInclude Include="Classes\Camera.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Chunk.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\RessourceManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -66,6 +63,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Classes\World.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Chunk.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
