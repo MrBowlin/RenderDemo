@@ -10,7 +10,6 @@
 #include "stb_image.h"
 #include "Classes/Camera.h"
 #include "Classes/Chunk.h"
-#include "Classes/GameObject.h"
 #include "Classes/RessourceManager.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

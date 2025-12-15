@@ -6,7 +6,7 @@ void Chunk::Start() {
 	meshThread.detach();
 }
 
-void Chunk::UpdateMesh(TerrainGenerator2D *terrain2d, TerrainGenerator3D *terrain3d, std::vector<unsigned int>* blockStates, Mesh *mesh, bool* ready) {
+void Chunk::UpdateMesh(TerrainGenerator2D *terrain2d, TerrainGenerator3D *terrain3d, std::vector<uint8_t>* blockStates, Mesh *mesh, bool* ready) {
 	for (int x = 0; x < WIDTH; x++) {
 		for (int z = 0; z < WIDTH; z++) {
 			for (int y = 0; y < HEIGHT; y++) {
@@ -23,35 +23,35 @@ void Chunk::UpdateMesh(TerrainGenerator2D *terrain2d, TerrainGenerator3D *terrai
 	for (unsigned int x = 1; x < WIDTH - 1; x++) {
 		for (unsigned int z = 1; z < WIDTH - 1; z++) {
 			for (unsigned int y = 0; y < HEIGHT; y++) {
-				int blockID = blockStates->at(x * HEIGHT * WIDTH + z * HEIGHT + y);
-				std::cout << "ID: " << blockID << std::endl;
+				unsigned int currentBlock = x * HEIGHT * WIDTH + z * HEIGHT + y;
+				int blockID = blockStates->at(currentBlock);
 				if (blockID > 0) {
-					if (blockStates->at(x * HEIGHT * WIDTH + (z - 1) * HEIGHT + y) == 0) {
+					if (blockStates->at(currentBlock- HEIGHT) == 0) {
 						mesh->UpdatePositions(x - 1, y, z - 1, Face::FRONT);
 						mesh->UpdateNormals(Face::FRONT);
 						mesh->UpdateTexels(blockID, Face::FRONT);
 					}
-					if (blockStates->at(x * HEIGHT * WIDTH + (z + 1) * HEIGHT + y) == 0) {
+					if (blockStates->at(currentBlock + HEIGHT) == 0) {
 						mesh->UpdatePositions(x - 1, y, z - 1, Face::BACK);
 						mesh->UpdateNormals(Face::BACK);
 						mesh->UpdateTexels(blockID, Face::BACK);
 					}
-					if (blockStates->at((x - 1) * HEIGHT * WIDTH + z * HEIGHT + y) == 0) {
+					if (blockStates->at(currentBlock - HEIGHT * WIDTH) == 0) {
 						mesh->UpdatePositions(x - 1, y, z - 1, Face::LEFT);
 						mesh->UpdateNormals(Face::LEFT);
 						mesh->UpdateTexels(blockID, Face::LEFT);
 					}
-					if (blockStates->at((x + 1) * HEIGHT * WIDTH + z * HEIGHT + y) == 0) {
+					if (blockStates->at(currentBlock + HEIGHT * WIDTH) == 0) {
 						mesh->UpdatePositions(x - 1, y, z - 1, Face::RIGHT);
 						mesh->UpdateNormals(Face::RIGHT);
 						mesh->UpdateTexels(blockID, Face::RIGHT);
 					}
-					if (y == HEIGHT - 1 || blockStates->at(x * HEIGHT * WIDTH + z * HEIGHT + (y + 1)) == 0) {
+					if (y == HEIGHT - 1 || blockStates->at(currentBlock + 1) == 0) {
 						mesh->UpdatePositions(x - 1, y, z - 1, Face::TOP);
 						mesh->UpdateNormals(Face::TOP);
 						mesh->UpdateTexels(blockID, Face::TOP);
 					}
-					if (y == 0 || blockStates->at(x * HEIGHT * WIDTH + z * HEIGHT + (y - 1)) == 0) {
+					if (y == 0 || blockStates->at(currentBlock - 1) == 0) {
 						mesh->UpdatePositions(x - 1, y, z - 1, Face::BOTTOM);
 						mesh->UpdateNormals(Face::BOTTOM);
 						mesh->UpdateTexels(blockID, Face::BOTTOM);

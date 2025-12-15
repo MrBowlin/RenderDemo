@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Users\tammo\Downloads\glad\src\glad.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -39,6 +36,9 @@
     <ClCompile Include="Classes\Mesh.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShaderLoader.h">
@@ -51,12 +51,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Chunk.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\GameObject.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Block.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Classes\RessourceManager.h">
