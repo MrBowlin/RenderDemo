@@ -11,6 +11,7 @@
 #include "Classes/Camera.h"
 #include "Classes/Chunk.h"
 #include "Classes/RessourceManager.h"
+#include "Classes/World.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -61,8 +62,9 @@ int main()
     Shader diffusedShader("Ressources/Shader/diffusedVertex.glsl", "Ressources/Shader/diffusedFragment.glsl");
     Shader activeShader = diffusedShader;
 
-    Chunk chunk = Chunk();
-    chunk.Start();
+    //Chunk chunk = Chunk();
+    World world;
+    world.Start();
 
     // Produces Stack Warning!
     unsigned int texture;
@@ -104,7 +106,7 @@ int main()
         view = camera.GetViewMatrix();
         activeShader.setMat4("view", view);
 
-        chunk.Render(activeShader);
+        world.Render(activeShader);
 
         // check and call events and swap the buffers
         glfwSwapBuffers(window);

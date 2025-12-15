@@ -175,6 +175,7 @@
     <ClInclude Include="Classes\Chunk.h" />
     <ClInclude Include="Classes\Mesh.h" />
     <ClInclude Include="Classes\RessourceManager.h" />
+    <ClInclude Include="Classes\World.h" />
     <ClInclude Include="PerlinNoise.hpp" />
     <ClInclude Include="Ressources\Properties\BlockData.h" />
     <ClInclude Include="ShaderLoader.h" />

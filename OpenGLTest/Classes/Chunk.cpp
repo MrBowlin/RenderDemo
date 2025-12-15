@@ -2,19 +2,19 @@
 #include <thread>
 
 void Chunk::Start() {
-	std::thread meshThread(Chunk::UpdateMesh, &terrain2d, &terrain3d, &blockStates, &mesh, &ready);
+	std::thread meshThread(Chunk::UpdateMesh, &terrain2d, &terrain3d, &blockStates, &mesh, &ready, Position.x, Position.z);
 	meshThread.detach();
 }
 
-void Chunk::UpdateMesh(TerrainGenerator2D *terrain2d, TerrainGenerator3D *terrain3d, std::vector<uint8_t>* blockStates, Mesh *mesh, bool* ready) {
+void Chunk::UpdateMesh(TerrainGenerator2D *terrain2d, TerrainGenerator3D *terrain3d, std::vector<uint8_t>* blockStates, Mesh *mesh, bool* ready, int xPos, int zPos) {
 	for (int x = 0; x < WIDTH; x++) {
 		for (int z = 0; z < WIDTH; z++) {
 			for (int y = 0; y < HEIGHT; y++) {
-				if (terrain3d->GetBlockNoise(x - 1, y, z - 1) == 0) {
+				if (terrain3d->GetBlockNoise(xPos + x - 1, y, zPos + z - 1) == 0) {
 					blockStates->push_back(0);
 				}
 				else {
-					blockStates->push_back(terrain2d->GetBlockNoise(x - 1, y, z - 1));
+					blockStates->push_back(terrain2d->GetBlockNoise(xPos + x - 1, y, zPos + z - 1));
 				}
 			}
 		}

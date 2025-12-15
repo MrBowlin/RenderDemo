@@ -26,7 +26,6 @@ public:
         }
         stbi_image_free(data);
         
-        //To be removed
         shader.use();
         shader.setInt("texture", 0);
 	}
