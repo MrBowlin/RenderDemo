@@ -10,14 +10,14 @@
 #include "Mesh.h"
 
 // Terrain-Generation-Settings
-const unsigned int GROUNDTHRESHHOLD = 96;
-const unsigned int WATERTHRESHHOLD = 10;
+const int GROUNDTHRESHHOLD = 96;
+const int WATERTHRESHHOLD = 10;
 
 const float CAVENOISEFREQUENCY = 0.05f;
-const float CAVENOISEDENSITY = 13.0f;
+const float CAVENOISEDENSITY = 1.5f;
 
 const float WORLDNOISEFREQUENCY = 0.08f;
-const float WORLDNOISEAMPLITUDE = 1.5f;
+const float WORLDNOISEAMPLITUDE = 13.0f; 
 
 class Chunk {
 public:
