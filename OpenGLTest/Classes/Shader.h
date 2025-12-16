@@ -1,12 +1,12 @@
-#ifndef SHADER_H
-#define SHADER_H
-
-#include <glad/glad.h>
-
+#pragma once
+//------ C++ Standard Libraries ------------//
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+//------ GLFW, GLM and GLAD ----------------//
+#include <glad/glad.h>
+//------ Classes ---------------------------//
 
 class Shader {
 public:
@@ -143,5 +143,3 @@ private:
 		}
 	}
 };
-
-#endif

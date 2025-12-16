@@ -1,6 +1,20 @@
-#pragma once
-
 #include "Mesh.h"
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+#include <glm/gtc/type_ptr.hpp>
+//------ Classes ---------------------------//
+#include "..\Ressources\Properties\BlockData.h"
+
+Mesh::Mesh() {
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
+	triangleCount = 0;
+}
+
+Mesh::~Mesh() {
+	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO);
+}
 
 void Mesh::CreateBuffer() {
 	glBindVertexArray(VAO);

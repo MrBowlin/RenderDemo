@@ -1,4 +1,7 @@
 #pragma once
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+//------ Classes ---------------------------//
 
 class TerrainGenerator2D {
 
@@ -10,12 +13,7 @@ class TerrainGenerator2D {
 
 public:
 
-	class TerrainGenerator2D(float amplitude = 1.0f, float frequency = 1.0f, int heightOffset = 0, unsigned int seed = 123456) {
-		Frequency = frequency;
-		Amplitude = amplitude;
-		Seed = seed;
-		HeightOffset = heightOffset;
-	}
+	TerrainGenerator2D(float amplitude = 1.0f, float frequency = 1.0f, int heightOffset = 0, unsigned int seed = 123456);
 
 	unsigned int HeightNoise(int x, int y);
 
@@ -33,12 +31,7 @@ class TerrainGenerator3D {
 	unsigned int Seed;
 
 public: 
-	class TerrainGenerator3D(float density = 1.0f, float frequency = 1.0f, float threshhold = 0.5f, unsigned int seed = 123456) {
-		Frequency = frequency;
-		Density = density;
-		Seed = seed;
-		Threshhold = threshhold;
-	}
+	TerrainGenerator3D(float density = 1.0f, float frequency = 1.0f, float threshhold = 0.5f, unsigned int seed = 123456);
 
 	float DensityNoise(int x, int y, int z);
 

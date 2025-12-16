@@ -1,7 +1,15 @@
 #include "TerrainGenerator.h"
-#include <cmath>
-#include <iostream>
-#include "..\PerlinNoise.hpp"
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+//------ Classes ---------------------------//
+#include "..\Includes\PerlinNoise.hpp"
+
+TerrainGenerator2D::TerrainGenerator2D(float amplitude, float frequency, int heightOffset, unsigned int seed) {
+	Frequency = frequency;
+	Amplitude = amplitude;
+	Seed = seed;
+	HeightOffset = heightOffset;
+}
 
 unsigned int TerrainGenerator2D::HeightNoise(int x, int y) {
 	siv::PerlinNoise::seed_type perlinSeed = Seed;
@@ -27,6 +35,13 @@ unsigned int TerrainGenerator2D::GetBlockNoise(int x, int y, int z) {
 		return 3;
 	else					// Air
 		return 0;
+}
+
+TerrainGenerator3D::TerrainGenerator3D(float density, float frequency, float threshhold, unsigned int seed) {
+	Frequency = frequency;
+	Density = density;
+	Seed = seed;
+	Threshhold = threshhold;
 }
 
 float TerrainGenerator3D::DensityNoise(int x, int y, int z) {

@@ -1,6 +1,23 @@
 #include "Chunk.h"
-#include "World.h"
+//------ C++ Standard Libraries ------------//
 #include <thread>
+//------ GLFW, GLM and GLAD ----------------//
+//------ Classes ---------------------------//
+#include "World.h"
+
+// Terrain-Generation-Settings
+const int GROUNDTHRESHHOLD = 64;
+const int WATERTHRESHHOLD = 10;
+
+const float CAVENOISEFREQUENCY = 0.05f;
+const float CAVENOISEDENSITY = 1.5f;
+
+const float WORLDNOISEFREQUENCY = 0.08f;
+const float WORLDNOISEAMPLITUDE = 13.0f;
+
+Chunk::Chunk(glm::vec3 position) {
+	Position = position;
+}
 
 void Chunk::Start() {
 	std::thread meshThread(Chunk::UpdateMesh, &terrain2d, &terrain3d, &blockStates, mesh, &ready, Position.x, Position.z);

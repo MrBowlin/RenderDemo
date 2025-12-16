@@ -1,10 +1,12 @@
 #pragma once
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+//------ Classes ---------------------------//
+#include "Shader.h"
+#include "..\Includes\stb_image.h"
 
-#include "..\ShaderLoader.h"
-#include "..\stb_image.h"
 
-class RessourceManager {
-public:
+namespace RessourceManager {
 	void CreateTexture(Shader shader, unsigned int* texture) {
         glGenTextures(1, texture);
         glBindTexture(GL_TEXTURE_2D, *texture);

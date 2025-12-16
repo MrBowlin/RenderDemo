@@ -1,23 +1,21 @@
 #pragma once
-
-#include <iostream>
+//------ C++ Standard Libraries ------------//
 #include <vector>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include "..\stb_image.h"
-#include "TerrainGenerator.h"
-#include <thread>
+//------ GLFW, GLM and GLAD ----------------//
+//------ Classes ---------------------------//
 #include "Mesh.h"
+#include "Shader.h"
+#include "TerrainGenerator.h"
 
 // Terrain-Generation-Settings
-const int GROUNDTHRESHHOLD = 96;
-const int WATERTHRESHHOLD = 10;
+extern const int GROUNDTHRESHHOLD;
+extern const int WATERTHRESHHOLD;
 
-const float CAVENOISEFREQUENCY = 0.05f;
-const float CAVENOISEDENSITY = 1.5f;
+extern const float CAVENOISEFREQUENCY;
+extern const float CAVENOISEDENSITY;
 
-const float WORLDNOISEFREQUENCY = 0.08f;
-const float WORLDNOISEAMPLITUDE = 13.0f; 
+extern const float WORLDNOISEFREQUENCY;
+extern const float WORLDNOISEAMPLITUDE;
 
 class Chunk {
 public:
@@ -33,9 +31,7 @@ public:
 	TerrainGenerator2D terrain2d = TerrainGenerator2D(WORLDNOISEAMPLITUDE, WORLDNOISEFREQUENCY, GROUNDTHRESHHOLD);
 	TerrainGenerator3D terrain3d = TerrainGenerator3D(CAVENOISEDENSITY, CAVENOISEFREQUENCY);
 
-	Chunk(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f)) {
-		Position = position;
-	}
+	Chunk(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f));
 
 	void Start();
 

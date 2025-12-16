@@ -1,15 +1,16 @@
 #pragma once
-
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
 #include <glad/glad.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//------ Classes ---------------------------//
 
 // Camera-Settings
-const float YAW = -90.0f;
-const float PITCH = 0.0f;
-const float SPEED = 2.5f;
-const float SENSITIVITY = 0.1f;
-const float ZOOM = 45.0f;
+extern const float YAW;
+extern const float PITCH;
+extern const float SPEED;
+extern const float SENSITIVITY;
+extern const float ZOOM;
 
 class Camera {
 public:
@@ -24,6 +25,10 @@ public:
 	float MovementSpeed;
 	float MouseSensitivity;
 	float Zoom;
+
+	float lastX = 0.0f;
+	float lastY = 0.0f;
+	bool firstMouse = true;
 
 	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f),
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),

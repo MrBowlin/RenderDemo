@@ -1,17 +1,20 @@
 #pragma once
-
-#include "Chunk.h"
-#include <glm/glm.hpp>
+//------ C++ Standard Libraries ------------//
 #include <vector>
-#include "..\ShaderLoader.h"
+//------ GLFW, GLM and GLAD ----------------//
+#include <glm/glm.hpp>
+//------ Classes ---------------------------//
+#include "Shader.h"
+#include "Chunk.h"
+
 
 // World-Settings
 const unsigned short CHUNKWIDTH = 18;
-const unsigned short CHUNKHEIGHT = 128;
+const unsigned short CHUNKHEIGHT = 96;
 
 const unsigned int WORLDSIZE = 256;
 
-const unsigned int CHUNKCOUNT = 8;
+const unsigned int CHUNKCOUNT = 6;
 
 class World {
 public:
