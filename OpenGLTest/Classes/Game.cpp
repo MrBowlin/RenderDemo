@@ -6,36 +6,73 @@
 //------ Classes ---------------------------//
 #include "World.h"
 #include "..\Settings\WorldSettings.h"
+#include "PostProcessing.h"
+#include "RessourceManager.h"
 
-Camera Game::mainCamera = Camera(glm::vec3(0.0f, WorldSettings::HEIGHTOFFSET + WorldSettings::WORLDNOISEAMPLITUDE, 0.0f));
+Camera Game::mainCamera = Camera(glm::vec3(0.0f, 
+    (WorldSettings::HEIGHTOFFSET + WorldSettings::WORLDNOISEAMPLITUDE) / WorldSettings::AMPLIFIERSTRENGTH, 0.0f));
 
-glm::vec3 Game::lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
+glm::vec3 Game::lightColor = glm::vec3(0.9f, 0.9f, 1.0f);
 glm::vec3 Game::lightDirection = glm::vec3(-0.5f, 3.0f, -2.0f);
 float Game::ambientStrength = 0.3f;
+unsigned int Game::textureAtlas = 0;
+unsigned int Game::skybox = 0;
+
+Shader* Game::basicShader;
+Shader* Game::diffusedShader;
+Shader* Game::skyboxShader;
 
 void Game::Start() {
+    Game::textureAtlas = RessourceManager::CreateTexture("Resources/Textures/TextureAtlasColored.png");
+    Game::skybox = RessourceManager::CreateCubeMap(Environment::SKYBOXCUBEMAP1);
+
+    Game::basicShader = new Shader("Resources/Shader/diffusedVertex.glsl", "Resources/Shader/diffusedFragment.glsl");
+    Game::diffusedShader = new Shader("Resources/Shader/diffusedVertex.glsl", "Resources/Shader/diffusedFragment.glsl");
+    Game::skyboxShader = new Shader("Resources/Shader/skyboxVertex.glsl", "Resources/Shader/skyboxFragment.glsl");
+
     World::Start();
+    PostProcessing::Start();
+
+    Game::diffusedShader->use();
+    Game::diffusedShader->setInt("texture", 0);
+
+    Game::skyboxShader->use();
+    Game::skyboxShader->setInt("skybox", 0);
 }
 
 void Game::Update(float deltaTime) {
     
 }
 
-void Game::Render(Shader shader, int screenWidth, int screenHeight) {
-    shader.use();
-    shader.setVec3("lightColor", Game::lightColor);
-    shader.setVec3("lightDirection", Game::lightDirection);
-    shader.setFloat("ambientStrength", Game::ambientStrength);
+void Game::Render(int screenWidth, int screenHeight) {
+    glCullFace(GL_FRONT);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    Game::diffusedShader->use();
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, Game::textureAtlas);
 
     glm::mat4 projection;
     projection = glm::perspective(glm::radians(80.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
-    shader.setMat4("projection", projection);
+    Game::diffusedShader->setMat4("projection", projection);
 
     glm::mat4 view;
     view = Game::mainCamera.GetViewMatrix();
-    shader.setMat4("view", view);
+    Game::diffusedShader->setMat4("view", view);
 
-    World::Render(shader);
+    World::Render(*Game::diffusedShader);
+
+    Game::skyboxShader->use();
+    glCullFace(GL_BACK);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, Game::skybox);
+
+    view = glm::mat4(glm::mat3(Game::mainCamera.GetViewMatrix()));
+    Game::skyboxShader->setMat4("view", view);
+    Game::skyboxShader->setMat4("projection", projection);
+
+    PostProcessing::Render(*Game::skyboxShader);
 }
 
 void Game::LateUpdate(float deltaTime) {
@@ -93,4 +130,10 @@ void Game::MouseCallback(GLFWwindow* window, double xposIn, double yposIn) {
     Game::mainCamera.lastY = ypos;
 
     Game::mainCamera.ProcessMouseMovement(xoffset, yoffset);
+}
+
+void Game::Stop() {
+    delete Game::basicShader;
+    delete Game::diffusedShader;
+    delete Game::skyboxShader;
 }

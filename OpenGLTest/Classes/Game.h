@@ -16,6 +16,13 @@ namespace Game {
 	extern glm::vec3 lightDirection;
 	extern float ambientStrength;
 
+	extern unsigned int textureAtlas;
+	extern unsigned int skybox;
+
+	extern Shader* basicShader;
+	extern Shader* diffusedShader;
+	extern Shader* skyboxShader;
+
 	/**
 	 * This function is called once after the Initialization of GLFW and GLAD was completed.
 	 * @param -
@@ -58,7 +65,7 @@ namespace Game {
 	* @param int screenHeight: Current height of the Screen in Pixels.
 	* @return void
 	*/
-	void Render(Shader shader, int screenWidth, int screenHeight);
+	void Render(int screenWidth, int screenHeight);
 
 	/**
 	 * This function is called once per Frame after the Render-function is called.
@@ -67,4 +74,6 @@ namespace Game {
 	 * @return void
 	 */
 	void LateUpdate(float deltaTime);
+
+	void Stop();
 };

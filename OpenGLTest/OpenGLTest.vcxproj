@@ -166,7 +166,9 @@
     <ClCompile Include="Classes\Game.cpp" />
     <ClCompile Include="Classes\Mesh.cpp" />
     <ClCompile Include="Classes\TerrainGenerator.cpp" />
+    <ClInclude Include="Classes\PostProcessing.h" />
     <ClInclude Include="Classes\ThreadPool.h" />
+    <ClInclude Include="Resources\Properties\Environment.h" />
     <ClInclude Include="Settings\GameSettings.h" />
     <ClInclude Include="Settings\WorldSettings.h" />
     <ClInclude Include="Classes\TerrainGenerator.h" />
@@ -182,15 +184,17 @@
     <ClInclude Include="Classes\RessourceManager.h" />
     <ClInclude Include="Classes\World.h" />
     <ClInclude Include="Includes\PerlinNoise.hpp" />
-    <ClInclude Include="Ressources\Properties\BlockData.h" />
+    <ClInclude Include="Resources\Properties\BlockData.h" />
     <ClInclude Include="Classes\Shader.h" />
     <ClInclude Include="Includes\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Shader\basicFragment.glsl" />
-    <None Include="Ressources\Shader\basicVertex.glsl" />
-    <None Include="Ressources\Shader\diffusedFragment.glsl" />
-    <None Include="Ressources\Shader\diffusedVertex.glsl" />
+    <None Include="Resources\Shader\basicFragment.glsl" />
+    <None Include="Resources\Shader\basicVertex.glsl" />
+    <None Include="Resources\Shader\diffusedFragment.glsl" />
+    <None Include="Resources\Shader\diffusedVertex.glsl" />
+    <None Include="Resources\Shader\skyboxFragment.glsl" />
+    <None Include="Resources\Shader\skyboxVertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

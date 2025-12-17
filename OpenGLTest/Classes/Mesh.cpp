@@ -3,7 +3,7 @@
 //------ GLFW, GLM and GLAD ----------------//
 #include <glm/gtc/type_ptr.hpp>
 //------ Classes ---------------------------//
-#include "..\Ressources\Properties\BlockData.h"
+#include "..\Resources\Properties\BlockData.h"
 
 Mesh::Mesh() {
 	glGenBuffers(1, &VBO);

@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Classes/Game.h"
-#include "Classes/RessourceManager.h"
+#include "Resources/Properties/Environment.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -27,7 +27,7 @@ int main()
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
-        std::cout << "Failed to create GLFW window" << std::endl;
+        std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
@@ -36,24 +36,16 @@ int main()
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        std::cout << "Failed to initialize GLAD" << std::endl;
+        std::cerr << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
 
-    Shader basicShader("Ressources/Shader/diffusedVertex.glsl", "Ressources/Shader/diffusedFragment.glsl");
-    Shader diffusedShader("Ressources/Shader/diffusedVertex.glsl", "Ressources/Shader/diffusedFragment.glsl");
-    Shader activeShader = diffusedShader;
-
-    unsigned int texture;
-    RessourceManager::CreateTexture(activeShader, &texture);
+    Game::Start();
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    glCullFace(GL_FRONT);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-    Game::Start();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -66,19 +58,15 @@ int main()
 
         Game::Update(deltaTime);
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        Game::Render(activeShader, SCR_WIDTH, SCR_HEIGHT); // sollte width, height sein, aber sind gerade beide noch 0
-
+        Game::Render(SCR_WIDTH, SCR_HEIGHT); // sollte width, height sein, aber sind gerade beide noch 0
+      
         Game::LateUpdate(deltaTime);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    Game::Stop();
 
     glfwTerminate();
     return 0;

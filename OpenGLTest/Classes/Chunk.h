@@ -21,6 +21,10 @@ public:
 
 	Chunk(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f));
 
+	~Chunk() {
+		delete mesh;
+	}
+
 	void Render(Shader shader);
 
 	void UpdateData(TerrainGenerator2D* worldGenerator, TerrainGenerator3D* caveGenerator);

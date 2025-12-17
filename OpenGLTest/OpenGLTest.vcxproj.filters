@@ -53,7 +53,7 @@
     <ClInclude Include="Classes\RessourceManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Ressources\Properties\BlockData.h">
+    <ClInclude Include="Resources\Properties\BlockData.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Includes\PerlinNoise.hpp">
@@ -83,11 +83,19 @@
     <ClInclude Include="Classes\ThreadPool.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Resources\Properties\Environment.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\PostProcessing.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Shader\diffusedFragment.glsl" />
-    <None Include="Ressources\Shader\basicVertex.glsl" />
-    <None Include="Ressources\Shader\basicFragment.glsl" />
-    <None Include="Ressources\Shader\diffusedVertex.glsl" />
+    <None Include="Resources\Shader\diffusedFragment.glsl" />
+    <None Include="Resources\Shader\basicVertex.glsl" />
+    <None Include="Resources\Shader\basicFragment.glsl" />
+    <None Include="Resources\Shader\diffusedVertex.glsl" />
+    <None Include="Resources\Shader\skyboxVertex.glsl" />
+    <None Include="Resources\Shader\skyboxFragment.glsl" />
   </ItemGroup>
 </Project>

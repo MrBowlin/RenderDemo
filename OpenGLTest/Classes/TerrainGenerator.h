@@ -10,14 +10,24 @@ class TerrainGenerator2D {
 	double Amplitude;
 	long Octaves;
 	double Persistance;
+	double AmplifierStrength;
 	unsigned int Seed;
-	unsigned int HeightOffset;
+	int HeightOffset;
 
 public:
 
-	TerrainGenerator2D(double amplitude = 1, double frequency = 1, int heightOffset = 0, long octaves = 1, double persistance = 0.5, unsigned int seed = 123456);
+	TerrainGenerator2D(
+		double amplitude = 1,
+		double frequency = 1,
+		int heightOffset = 0,
+		long octaves = 1,
+		double persistance = 0.5,
+		double amplifierStrength = 1,
+		unsigned int seed = 123456);
 
 	int HeightNoise(int x, int y);
+
+	int AmplifiedHeightNoise(int x, int y);
 
 	unsigned short GetBlockNoise(int x, int y, int z);
 };

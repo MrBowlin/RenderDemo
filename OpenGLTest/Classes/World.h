@@ -19,7 +19,8 @@ namespace World {
 		WorldSettings::WORLDNOISEFREQUENCY,
 		WorldSettings::HEIGHTOFFSET,
 		WorldSettings::WORLDNOISEOCTAVES,
-		WorldSettings::WORLDNOISEPERSISTANCE);
+		WorldSettings::WORLDNOISEPERSISTANCE,
+		WorldSettings::AMPLIFIERSTRENGTH);
 	TerrainGenerator3D caveGenerator = TerrainGenerator3D(
 		WorldSettings::CAVENOISEDENSITY,
 		WorldSettings::CAVENOISEFREQUENCY,
@@ -41,8 +42,19 @@ namespace World {
 	}
 
 	void Render(Shader shader) {
+		shader.use();
+		shader.setVec3("lightColor", Game::lightColor);
+		shader.setVec3("lightDirection", Game::lightDirection);
+		shader.setFloat("ambientStrength", Game::ambientStrength);
+
 		for (Chunk* chunk : chunks) {
 			chunk->Render(shader);
+		}
+	}
+
+	void Stop() {
+		for (Chunk* chunk : chunks) {
+			delete chunk;
 		}
 	}
 };
