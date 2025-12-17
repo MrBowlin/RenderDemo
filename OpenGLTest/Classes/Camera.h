@@ -1,15 +1,10 @@
 #pragma once
-
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
 #include <glad/glad.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
-// Camera-Settings
-const float YAW = -90.0f;
-const float PITCH = 0.0f;
-const float SPEED = 2.5f;
-const float SENSITIVITY = 0.1f;
-const float ZOOM = 45.0f;
+//------ Classes ---------------------------//
+#include "..\Settings\GameSettings.h"
 
 class Camera {
 public:
@@ -25,13 +20,17 @@ public:
 	float MouseSensitivity;
 	float Zoom;
 
+	float lastX = 0.0f;
+	float lastY = 0.0f;
+	bool firstMouse = true;
+
 	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f),
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
-		float yaw = YAW, float pitch = PITCH) :
+		float yaw = GameSettings::YAW, float pitch = GameSettings::PITCH) :
 		Forward(glm::vec3(0.0f, 0.0f, -1.0f)),
-		MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY),
-		Zoom(ZOOM)
+		MovementSpeed(GameSettings::SPEED),
+		MouseSensitivity(GameSettings::SENSITIVITY),
+		Zoom(GameSettings::ZOOM)
 	{
 		Position = position;
 		WorldUp = up;
@@ -44,9 +43,9 @@ public:
 		float upX, float upY, float upZ, float yaw,
 		float pitch) :
 		Forward(glm::vec3(0.0f, 0.0f, -1.0f)),
-		MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY),
-		Zoom(ZOOM)
+		MovementSpeed(GameSettings::SPEED),
+		MouseSensitivity(GameSettings::SENSITIVITY),
+		Zoom(GameSettings::ZOOM)
 	{
 		Position = glm::vec3(posX, posY, posZ);
 		WorldUp = glm::vec3(upX, upY, upZ);

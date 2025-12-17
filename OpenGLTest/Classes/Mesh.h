@@ -1,12 +1,11 @@
 #pragma once
-
-#include <iostream>
+//------ C++ Standard Libraries ------------//
 #include <vector>
+//------ GLFW, GLM and GLAD ----------------//
+#include <glad/glad.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include "..\ShaderLoader.h"
-#include "..\Ressources\Properties\BlockData.h"
+//------ Classes ---------------------------//
+#include "Shader.h"
 
 enum class Face {
 	TOP,
@@ -25,16 +24,9 @@ public:
 	unsigned int VBO, VAO;
 	unsigned int triangleCount;
 
-	Mesh() {
-		glGenBuffers(1, &VBO);
-		glGenVertexArrays(1, &VAO);
-		triangleCount = 0;
-	}
+	Mesh();
 
-	~Mesh() {
-		glDeleteBuffers(1, &VBO);
-		glDeleteVertexArrays(1, &VAO);
-	}
+	~Mesh();
 
 	void CreateBuffer();
 

@@ -1,5 +1,9 @@
 #include "Camera.h"
-#include <iostream>
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+#include <glm/gtc/matrix_transform.hpp>
+//------ Classes ---------------------------//
+
 
 glm::mat4 Camera::GetViewMatrix() {
 		return glm::lookAt(Position, Position + Forward, Up);
@@ -8,11 +12,6 @@ glm::mat4 Camera::GetViewMatrix() {
 void Camera::Move(glm::vec3 direction) {
 	glm::vec3 flatForward = glm::cross(WorldUp, Right);
 	Position += direction.x * Right + direction.y * WorldUp + direction.z * flatForward;
-	std::cout << "Position:" <<
-		" x: " << floor(Position.x) << 
-		" y: " << floor(Position.y) << 
-		" z: " << floor(Position.z) << 
-		std::endl;
 }
 
 void Camera::ProcessMouseMovement(float xOffset, float yOffset, GLboolean constrainPitch) {

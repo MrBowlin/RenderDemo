@@ -1,8 +1,25 @@
-#pragma once
-
 #include "Mesh.h"
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+#include <glm/gtc/type_ptr.hpp>
+//------ Classes ---------------------------//
+#include "..\Resources\Properties\BlockData.h"
+
+Mesh::Mesh() {
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
+	triangleCount = 0;
+}
+
+Mesh::~Mesh() {
+	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO);
+}
 
 void Mesh::CreateBuffer() {
+	if (positions.size() == 0)
+		return;
+
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER,
@@ -50,22 +67,22 @@ void Mesh::UpdatePositions(unsigned int x, unsigned int y, unsigned int z, Face 
 	switch (face)
 	{
 	case Face::TOP:
-		indices = &topVertices;
+		indices = &BlockData::TOPVERTICES;
 		break;
 	case Face::BOTTOM:
-		indices = &bottomVertices;
+		indices = &BlockData::BOTTOMVERTICES;
 		break;
 	case Face::FRONT:
-		indices = &frontVertices;
+		indices = &BlockData::FRONTVERTICES;
 		break;
 	case Face::BACK:
-		indices = &backVertices;
+		indices = &BlockData::BACKVERTICES;
 		break;
 	case Face::LEFT:
-		indices = &leftVertices;
+		indices = &BlockData::LEFTVERTICES;
 		break;
 	case Face::RIGHT:
-		indices = &rightVertices;
+		indices = &BlockData::RIGHTVERTICES;
 		break;
 	default:
 		std::cout << "Tried to create Positions but invalid Face-Type" << std::endl;
@@ -83,22 +100,22 @@ void Mesh::UpdateNormals(Face face) {
 	switch (face)
 	{
 	case Face::TOP:
-		indices = &topNormals;
+		indices = &BlockData::TOPNORMALS;
 		break;
 	case Face::BOTTOM:
-		indices = &bottomNormals;
+		indices = &BlockData::BOTTOMNORMALS;
 		break;
 	case Face::FRONT:
-		indices = &frontNormals;
+		indices = &BlockData::FRONTNORMALS;
 		break;
 	case Face::BACK:
-		indices = &backNormals;
+		indices = &BlockData::BOTTOMNORMALS;
 		break;
 	case Face::LEFT:
-		indices = &leftNormals;
+		indices = &BlockData::LEFTNORMALS;
 		break;
 	case Face::RIGHT:
-		indices = &rightNormals;
+		indices = &BlockData::RIGHTNORMALS;
 		break;
 	default:
 		std::cout << "Tried to create Normals but invalid Face-Type" << std::endl;
@@ -116,7 +133,7 @@ void Mesh::UpdateTexels(unsigned int blockID, Face face) {
 	float yOffset;
 	GetOffset(blockID, face, &xOffset, &yOffset);
 
-	const std::vector<float>* indices = &commonTexels;
+	const std::vector<float>* indices = &BlockData::COMMONTEXELS;
 	for (unsigned int i = 0; i < 6 * 2; i += 2) {
 		texels.push_back((indices->at(i) + xOffset) / 16.0f);
 		texels.push_back((indices->at(i + 1) + 15 - yOffset) / 16.0f);
@@ -161,7 +178,7 @@ void Mesh::GetOffset(unsigned int blockID, Face face, float* xOffset, float* yOf
 		*yOffset = 14.0f;
 		return;
 	}
-	*xOffset = texCoords[textureID * 2 - 2];
-	*yOffset = texCoords[textureID * 2 - 1];
+	*xOffset = BlockData::TEXTURECOORDINATES.at(textureID * 2 - 2);
+	*yOffset = BlockData::TEXTURECOORDINATES.at(textureID * 2 - 1);
 	return;
 }

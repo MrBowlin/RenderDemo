@@ -1,48 +1,50 @@
 #pragma once
+//------ C++ Standard Libraries ------------//
+//------ GLFW, GLM and GLAD ----------------//
+//------ Classes ---------------------------//
 
 class TerrainGenerator2D {
 
 	// Settings
-	float Frequency;
-	float Amplitude;
+	double Frequency;
+	double Amplitude;
+	long Octaves;
+	double Persistance;
+	double AmplifierStrength;
 	unsigned int Seed;
-	unsigned int HeightOffset;
+	int HeightOffset;
 
 public:
 
-	class TerrainGenerator2D(float amplitude = 1.0f, float frequency = 1.0f, int heightOffset = 0, unsigned int seed = 123456) {
-		Frequency = frequency;
-		Amplitude = amplitude;
-		Seed = seed;
-		HeightOffset = heightOffset;
-	}
+	TerrainGenerator2D(
+		double amplitude = 1,
+		double frequency = 1,
+		int heightOffset = 0,
+		long octaves = 1,
+		double persistance = 0.5,
+		double amplifierStrength = 1,
+		unsigned int seed = 123456);
 
-	unsigned int HeightNoise(int x, int y);
+	int HeightNoise(int x, int y);
 
-	bool IsBlockNoise(int x, int y, int z);
+	int AmplifiedHeightNoise(int x, int y);
 
-	unsigned int GetBlockNoise(int x, int y, int z);
+	unsigned short GetBlockNoise(int x, int y, int z);
 };
 
 class TerrainGenerator3D {
 
 	// Settings
-	float Frequency;
-	float Density;
-	float Threshhold;
+	double Frequency;
+	double Density;
+	long Octaves;
+	double Persistance;
 	unsigned int Seed;
 
 public: 
-	class TerrainGenerator3D(float density = 1.0f, float frequency = 1.0f, float threshhold = 0.5f, unsigned int seed = 123456) {
-		Frequency = frequency;
-		Density = density;
-		Seed = seed;
-		Threshhold = threshhold;
-	}
+	TerrainGenerator3D(double density = 1, double frequency = 1, long octaves = 1, double persistance = 0.5, unsigned int seed = 123456);
 
-	float DensityNoise(int x, int y, int z);
+	double DensityNoise(int x, int y, int z);
 
-	bool IsBlockNoise(int x, int y, int z);
-
-	unsigned int GetBlockNoise(int x, int y, int z);
+	unsigned short GetBlockNoise(int x, int y, int z);
 };
