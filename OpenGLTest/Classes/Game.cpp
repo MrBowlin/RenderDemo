@@ -2,17 +2,19 @@
 //------ C++ Standard Libraries ------------//
 //------ GLFW, GLM and GLAD ----------------//
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/glm.hpp>
 //------ Classes ---------------------------//
+#include "World.h"
+#include "..\Settings\WorldSettings.h"
 
-Camera Game::mainCamera;
-World Game::world;
+Camera Game::mainCamera = Camera(glm::vec3(0.0f, WorldSettings::HEIGHTOFFSET + WorldSettings::WORLDNOISEAMPLITUDE, 0.0f));
 
 glm::vec3 Game::lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 glm::vec3 Game::lightDirection = glm::vec3(-0.5f, 3.0f, -2.0f);
 float Game::ambientStrength = 0.3f;
 
 void Game::Start() {
-    Game::world.Start();
+    World::Start();
 }
 
 void Game::Update(float deltaTime) {
@@ -33,7 +35,7 @@ void Game::Render(Shader shader, int screenWidth, int screenHeight) {
     view = Game::mainCamera.GetViewMatrix();
     shader.setMat4("view", view);
 
-    Game::world.Render(shader);
+    World::Render(shader);
 }
 
 void Game::LateUpdate(float deltaTime) {

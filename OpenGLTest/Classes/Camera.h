@@ -4,13 +4,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 //------ Classes ---------------------------//
-
-// Camera-Settings
-extern const float YAW;
-extern const float PITCH;
-extern const float SPEED;
-extern const float SENSITIVITY;
-extern const float ZOOM;
+#include "..\Settings\GameSettings.h"
 
 class Camera {
 public:
@@ -32,11 +26,11 @@ public:
 
 	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f),
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
-		float yaw = YAW, float pitch = PITCH) :
+		float yaw = GameSettings::YAW, float pitch = GameSettings::PITCH) :
 		Forward(glm::vec3(0.0f, 0.0f, -1.0f)),
-		MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY),
-		Zoom(ZOOM)
+		MovementSpeed(GameSettings::SPEED),
+		MouseSensitivity(GameSettings::SENSITIVITY),
+		Zoom(GameSettings::ZOOM)
 	{
 		Position = position;
 		WorldUp = up;
@@ -49,9 +43,9 @@ public:
 		float upX, float upY, float upZ, float yaw,
 		float pitch) :
 		Forward(glm::vec3(0.0f, 0.0f, -1.0f)),
-		MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY),
-		Zoom(ZOOM)
+		MovementSpeed(GameSettings::SPEED),
+		MouseSensitivity(GameSettings::SENSITIVITY),
+		Zoom(GameSettings::ZOOM)
 	{
 		Position = glm::vec3(posX, posY, posZ);
 		WorldUp = glm::vec3(upX, upY, upZ);

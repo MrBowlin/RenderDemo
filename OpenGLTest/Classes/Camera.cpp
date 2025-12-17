@@ -4,11 +4,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 //------ Classes ---------------------------//
 
-const float YAW = -90.0f;
-const float PITCH = 0.0f;
-const float SPEED = 2.5f;
-const float SENSITIVITY = 0.1f;
-const float ZOOM = 45.0f;
 
 glm::mat4 Camera::GetViewMatrix() {
 		return glm::lookAt(Position, Position + Forward, Up);

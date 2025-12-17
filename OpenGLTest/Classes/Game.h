@@ -7,12 +7,10 @@
 //------ Classes ---------------------------//
 #include "Shader.h"
 #include "Camera.h"
-#include "World.h"
 
 namespace Game {
 
 	extern Camera mainCamera;
-	extern World world;
 
 	extern glm::vec3 lightColor;
 	extern glm::vec3 lightDirection;

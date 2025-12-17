@@ -166,6 +166,9 @@
     <ClCompile Include="Classes\Game.cpp" />
     <ClCompile Include="Classes\Mesh.cpp" />
     <ClCompile Include="Classes\TerrainGenerator.cpp" />
+    <ClInclude Include="Classes\ThreadPool.h" />
+    <ClInclude Include="Settings\GameSettings.h" />
+    <ClInclude Include="Settings\WorldSettings.h" />
     <ClInclude Include="Classes\TerrainGenerator.h" />
     <ClCompile Include="Includes\glad.c" />
     <ClCompile Include="Main.cpp" />

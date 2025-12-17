@@ -74,6 +74,15 @@
     <ClInclude Include="Classes\TerrainGenerator.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
+    <ClInclude Include="Settings\WorldSettings.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings\GameSettings.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ThreadPool.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Shader\diffusedFragment.glsl" />

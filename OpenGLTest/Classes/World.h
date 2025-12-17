@@ -1,31 +1,41 @@
 #pragma once
 //------ C++ Standard Libraries ------------//
 #include <vector>
+#include <iostream>
 //------ GLFW, GLM and GLAD ----------------//
 #include <glm/glm.hpp>
 //------ Classes ---------------------------//
 #include "Shader.h"
 #include "Chunk.h"
+#include "..\Settings\WorldSettings.h"
+#include "ThreadPool.h"
+#include "TerrainGenerator.h"
 
-
-// World-Settings
-const unsigned short CHUNKWIDTH = 18;
-const unsigned short CHUNKHEIGHT = 96;
-
-const unsigned int WORLDSIZE = 256;
-
-const unsigned int CHUNKCOUNT = 6;
-
-class World {
-public:
+namespace World {
 	std::vector<Chunk*>chunks;
+	ThreadPool threadPool = ThreadPool(8);
+	TerrainGenerator2D worldGenerator = TerrainGenerator2D(
+		WorldSettings::WORLDNOISEAMPLITUDE,
+		WorldSettings::WORLDNOISEFREQUENCY,
+		WorldSettings::HEIGHTOFFSET,
+		WorldSettings::WORLDNOISEOCTAVES,
+		WorldSettings::WORLDNOISEPERSISTANCE);
+	TerrainGenerator3D caveGenerator = TerrainGenerator3D(
+		WorldSettings::CAVENOISEDENSITY,
+		WorldSettings::CAVENOISEFREQUENCY,
+		WorldSettings::CAVENOISEOCTAVES,
+		WorldSettings::CAVENOISEPERSISTANCE);
 
 	void Start() {
-		for (unsigned int x = 0; x < CHUNKCOUNT; x++) {
-			for (unsigned int z = 0; z < CHUNKCOUNT; z++) {
-				Chunk *chunk = new Chunk(glm::vec3(x * (CHUNKWIDTH - 2), 0.0f, z * (CHUNKWIDTH - 2)));
-				chunk->Start();
+		for (unsigned int x = 0; x < WorldSettings::CHUNKCOUNT; x++) {
+			for (unsigned int z = 0; z < WorldSettings::CHUNKCOUNT; z++) {
+				Chunk* chunk = new Chunk(glm::vec3(x * (WorldSettings::CHUNKWIDTH - 2), 0.0f, z * (WorldSettings::CHUNKWIDTH - 2)));
 				chunks.push_back(chunk);
+				threadPool.enqueue([chunk]{
+					chunk->UpdateData(&worldGenerator, &caveGenerator);
+					chunk->UpdateMesh();
+					chunk->ready = true;
+				});
 			}
 		}
 	}
