@@ -54,7 +54,7 @@ void Game::Render(int screenWidth, int screenHeight) {
     glBindTexture(GL_TEXTURE_2D, Game::textureAtlas);
 
     glm::mat4 projection;
-    projection = glm::perspective(glm::radians(80.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
+    projection = glm::perspective(glm::radians(GameSettings::FIELDOFVIEW), (float)screenWidth / (float)screenHeight, GameSettings::NEARPLANE, GameSettings::FARPLANE);
     Game::diffusedShader->setMat4("projection", projection);
 
     glm::mat4 view;

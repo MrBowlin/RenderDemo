@@ -10,5 +10,8 @@ namespace GameSettings {
 	const float ZOOM = 45.0f;
 
 	// Render-Settings
-	const float RENDERDISTANCE = 5.0f;
+	const int LOADINGDISTANCE = 4;
+	const float NEARPLANE = 0.1f;
+	const float FARPLANE = 200.0f;
+	const float FIELDOFVIEW = 80.0f;
 }

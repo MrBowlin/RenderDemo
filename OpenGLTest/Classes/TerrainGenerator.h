@@ -27,8 +27,6 @@ public:
 
 	int HeightNoise(int x, int y);
 
-	int AmplifiedHeightNoise(int x, int y);
-
 	unsigned short GetBlockNoise(int x, int y, int z);
 };
 
@@ -42,7 +40,12 @@ class TerrainGenerator3D {
 	unsigned int Seed;
 
 public: 
-	TerrainGenerator3D(double density = 1, double frequency = 1, long octaves = 1, double persistance = 0.5, unsigned int seed = 123456);
+	TerrainGenerator3D(
+		double density = 1, 
+		double frequency = 1,
+		long octaves = 1,
+		double persistance = 0.5, 
+		unsigned int seed = 123456);
 
 	double DensityNoise(int x, int y, int z);
 
